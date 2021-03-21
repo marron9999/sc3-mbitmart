@@ -1,4 +1,4 @@
-# sc3
+# sc3-mbituart
 
 ![](images/mbituart.png)
 

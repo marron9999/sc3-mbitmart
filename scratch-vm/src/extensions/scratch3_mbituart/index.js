@@ -66,10 +66,9 @@ class MBitUART {
 		this._extensionId = extensionId;
 
 		if( this._runtime._mbitlink == undefined) {
-			this._runtime._mbitlink = { instance: null, extensions: [this] };
+			this._runtime._mbitlink = { instance: null, extensions: { mbituart : this } };
 		} else {
-			this._runtime._mbitlink.extensions[
-				this._runtime._mbitlink.extensions.length] = this;
+			this._runtime._mbitlink.extensions.mbituart = this;
 		}
 
 		/**

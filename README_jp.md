@@ -11,7 +11,8 @@
 
 - 左が標準で組み込まれているmicro:bit拡張機能のブロックです。
 - 右はこの拡張機能で使えるブロックです。
-- ジェスチャーは、micro:bit V2仕様となっています。
+- ジェスチャーは、micro:bit V2仕様です。
+- 効果音は、micro:bit V2仕様です。
 
 ![](images/blocks-mbit.png)
 

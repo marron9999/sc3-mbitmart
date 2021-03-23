@@ -32,6 +32,12 @@ const CMD = {
 	MAGNETIC_FORCE: "RF",
 	ACCELERATION: "RG",
 	ROTATION: "RR",
+	PLAY_TONE_16: "TX",
+	PLAY_TONE_8: "T8",
+	PLAY_TONE_4: "T4",
+	PLAY_TONE_2: "T2",
+	PLAY_TONE_1: "T1",
+	PLAY_EXPRESS: "TT",
 };
 
 /**
@@ -91,6 +97,10 @@ class MBitUART {
             magnetic_force: [0, 0, 0],
 			acceleration: [0, 0, 0],
 			rotation: [0, 0],
+
+			// micro:bit v2	
+			play_sound: 0,
+			microbit_level: 0,
 		};
 
 		/**
@@ -151,7 +161,7 @@ class MBitUART {
 			this._sensors.temperature = parseInt(data.substr(2));
 			return true;
 		}
-		if(data[0] == 'T') {
+		if(data[0] == 'F') {
 			this._sensors.magnetic_force = this.hex_array(data.substr(2));
 			return true;
 		}
@@ -161,6 +171,21 @@ class MBitUART {
 		}
 		if(data[0] == 'R') {
 			this._sensors.rotation = this.hex_array(data.substr(2));
+			return true;
+		}
+		if(data[0] == 'D') {
+			if(data[1] == 'T') {
+				if(data[2] == 'S') {
+					this._sensors.play_sound = 1;
+				} else {
+					this._sensors.play_sound = 0;
+				}
+				return true;
+			}
+			if(data[1] == 'V') {
+				this._sensors.microbit_level = parseInt(data.substr(2));
+				return true;
+			}
 			return true;
 		}
 		return false;
@@ -219,6 +244,13 @@ class MBitUART {
 
 	get touch_pins () {
 		return this._sensors.touch_pins;
+	}
+
+	get play_sound () {
+		return this._sensors.play_sound;
+	}
+	get microbit_level () {
+		return this._sensors.microbit_level;
 	}
 
 	hex2dec (val) {
@@ -307,6 +339,45 @@ const MBitUART_Rotation = {
 const MBitUART_Enable = {
 	ENABLE: 1,
 	DISABLE: 0
+};
+
+const MBitUART_SoundLevel = {
+	LOW: 0,
+	MID: 1,
+	HIGH: 2
+};
+const MBitUART_SoundLength = {
+	LEN1: 1,
+	LEN2: 2,
+	LEN4: 4,
+	LEN8: 8,
+	LEN16: 16
+};
+const MBitUART_Sound = {
+	DO: 0,
+	DOS: 1,
+	RE: 2,
+	RES: 3,
+	MI: 4,
+	FA: 5,
+	FAS: 6,
+	SO: 7,
+	SOS: 8,
+	RA: 9,
+	RAS: 10,
+	SHI: 11
+};
+const MBitUART_Express = {
+	giggle: "giggle",
+	happy: "happy",
+	hello: "hello",
+	mysterious: "mysterious",
+	sad: "sad",
+	slide: "slide",
+	soaring: "soaring",
+	spring: "spring",
+	twinkle: "twinkle",
+	yawn: "yawn"
 };
 
 /**
@@ -538,6 +609,255 @@ class Scratch3_MBitUART_Blocks {
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Enable.DISABLE
+			}
+		];
+	}
+
+	get SOUND_LENGTH_MENU () {
+		return [
+			{
+				text: formatMessage({
+					id: 'mbituart.soundLengthMenu.Len16',
+					default: '1/16',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_SoundLength.LEN16
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundLengthMenu.Len8',
+					default: '1/8',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_SoundLength.LEN8
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundLengthMenu.Len4',
+					default: '1/4',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_SoundLength.LEN4
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundLengthMenu.Len2',
+					default: '1/2',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_SoundLength.LEN2
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundLengthMenu.Len1',
+					default: '1',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_SoundLength.LEN1
+			}
+		];
+	}
+	get SOUND_LEVEL_MENU () {
+		return [
+			{
+				text: formatMessage({
+					id: 'mbituart.soundLevelMenu.Low',
+					default: 'Low',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_SoundLevel.LOW
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundLevelMenu.Mid',
+					default: 'Middle',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_SoundLevel.MID
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundLevelMenu.High',
+					default: 'High',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_SoundLevel.HIGH
+			}
+		];
+	}
+	get SOUND_MENU () {
+		return [
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.Do',
+					default: 'Do',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.DO
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.DoS',
+					default: 'Do#',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.DOS
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.Re',
+					default: 'Re',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.RE
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.ReS',
+					default: 'Re#',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.RES
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.Mi',
+					default: 'Mi',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.MI
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.Fa',
+					default: 'Fa',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.FA
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.FaS',
+					default: 'Fa#',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.FAS
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.So',
+					default: 'So',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.SO
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.SoS',
+					default: 'So#',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.SOS
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.Ra',
+					default: 'Ra',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.RA
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.soundMenu.Shi',
+					default: 'Shi',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Sound.SHI
+			}
+		];
+	}
+	get EXPRESS_MENU () {
+		return [
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.giggle',
+					default: 'giggle',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.giggle
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.happy',
+					default: 'happy',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.happy
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.hello',
+					default: 'hello',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.hello
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.mysterious',
+					default: 'mysterious',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.mysterious
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.sad',
+					default: 'sad',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.sad
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.slide',
+					default: 'slide',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.slide
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.soaring',
+					default: 'soaring',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.soaring
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.spring',
+					default: 'spring',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.spring
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.twinkle',
+					default: 'twinkle',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.twinkle
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.expressMenu.yawn',
+					default: 'yawn',
+					description: 'label for enable picker'
+				}),
+				value: MBitUART_Express.yawn
 			}
 		];
 	}
@@ -819,6 +1139,58 @@ class Scratch3_MBitUART_Blocks {
 				},
 				'---',
 				{
+					opcode: 'playExpress',
+					text: formatMessage({
+						id: 'mbituart.playExpress',
+						default: 'Play [EXPRESS]',
+						description: 'play express'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						EXPRESS: {
+							type: ArgumentType.STRING,
+							menu: 'express',
+							defaultValue: MBitUART_Express.giggle
+						}
+					}
+				},
+				{
+					opcode: 'playTone',
+					text: formatMessage({
+						id: 'mbituart.playTone',
+						default: 'Play tone [LEVEL] [KIND], Length [LEN]',
+						description: 'play tone'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						LEVEL: {
+							type: ArgumentType.NUMBER,
+							menu: 'soundlevel',
+							defaultValue: MBitUART_SoundLevel.MID
+						},
+						KIND: {
+							type: ArgumentType.NUMBER,
+							menu: 'sound',
+							defaultValue: MBitUART_Sound.DO
+						},
+						LEN: {
+							type: ArgumentType.NUMBER,
+							menu: 'soundlength',
+							defaultValue: MBitUART_SoundLength.LEN16
+						}
+					}
+				},
+				{
+					opcode: 'getPlaySound',
+					text: formatMessage({
+						id: 'mbituart.getPlaySound',
+						default: 'is play sound?',
+						description: 'is play sound?'
+					}),
+					blockType: BlockType.REPORTER,
+				},
+				'---',
+				{
 					opcode: 'getAcceleration',
 					text: formatMessage({
 						id: 'mbituart.getAcceleration',
@@ -999,6 +1371,22 @@ class Scratch3_MBitUART_Blocks {
 					acceptReporters: true,
 					items: this.ENABLE_MENU
 				},
+				soundlength: {
+					acceptReporters: true,
+					items: this.SOUND_LENGTH_MENU
+				},
+				soundlevel: {
+					acceptReporters: true,
+					items: this.SOUND_LEVEL_MENU
+				},
+				sound: {
+					acceptReporters: true,
+					items: this.SOUND_MENU
+				},
+				express: {
+					acceptReporters: true,
+					items: this.EXPRESS_MENU
+				}
 			}
 		};
 	}
@@ -1231,6 +1619,29 @@ class Scratch3_MBitUART_Blocks {
 	setRotation (args) {
 		this.command(CMD.ROTATION, args.ROUND);
 	}
+	playTone(args) {
+		const tone = [
+		[131, 139, 147, 156, 165, 175, 185, 196, 208, 220, 233, 247],
+		[262, 277, 294, 311, 330, 349, 370, 392, 415, 440, 466, 498],
+		[523, 554, 587, 622, 659, 698, 740, 784, 831, 880, 932, 988] ];
+		if(args.LEN == "1") {
+			this.command(CMD.PLAY_TONE_1, tone[args.LEVEL][args.KIND]);
+		} else if(args.LEN == "2") {
+			this.command(CMD.PLAY_TONE_2, tone[args.LEVEL][args.KIND]);
+		} else if(args.LEN == "4") {
+			this.command(CMD.PLAY_TONE_4, tone[args.LEVEL][args.KIND]);
+		} else if(args.LEN == "8") {
+			this.command(CMD.PLAY_TONE_8, tone[args.LEVEL][args.KIND]);
+		} else {
+			this.command(CMD.PLAY_TONE_16, tone[args.LEVEL][args.KIND]);
+		}
+	}
+	playExpress(args) {
+		this.command(CMD.PLAY_EXPRESS, args.EXPRESS);
+	}
+	getPlaySound() {
+		return this.instance.play_sound;
+	}
 	command(cmd, arg) {
 		this.instance.send(cmd, arg);
 		return new Promise(resolve => {
@@ -1296,7 +1707,41 @@ class Scratch3_MBitUART_Blocks {
 				'mbituart.gesturesMenu.tiltleft': '左に傾けた',
 				'mbituart.gesturesMenu.tiltright': '右に傾けた',
 				'mbituart.gesturesMenu.tiltbackwards': 'ロゴが下になった',
-				'mbituart.gesturesMenu.tiltforward': 'ロゴが上になった'
+				'mbituart.gesturesMenu.tiltforward': 'ロゴが上になった',
+				'mbituart.enableManu.disable': '使わない',
+				'mbituart.playTone': '[LEVEL][KIND]を[LEN]で鳴らす',
+				'mbituart.soundMenu.Do': 'ド',
+				'mbituart.soundMenu.DoS': 'ド#',
+				'mbituart.soundMenu.Re': 'レ',
+				'mbituart.soundMenu.ReS': 'レ#',
+				'mbituart.soundMenu.Mi': 'ミ',
+				'mbituart.soundMenu.Fa': 'ファ',
+				'mbituart.soundMenu.FaS': 'ファ#',
+				'mbituart.soundMenu.So': 'ソ',
+				'mbituart.soundMenu.SoS': 'ソ#',
+				'mbituart.soundMenu.Ra': 'ラ',
+				'mbituart.soundMenu.RaS': 'ラ#',
+				'mbituart.soundMenu.Shi': 'シ',
+				'mbituart.soundLengthMenu.Len1': '1拍',
+				'mbituart.soundLengthMenu.Len2': '1/2拍',
+				'mbituart.soundLengthMenu.Len4': '1/4拍',
+				'mbituart.soundLengthMenu.Len8': '1/8拍',
+				'mbituart.soundLengthMenu.Len16': '1/16拍',
+				'mbituart.soundLevelMenu.Mid': '中音',
+				'mbituart.soundLevelMenu.High': '高音',
+				'mbituart.soundLevelMenu.Low': '低音',
+				'mbituart.playExpress': '[EXPRESS]を鳴らす',
+				'mbituart.getPlaySound': '演奏中',
+		        'mbituart.expressMenu.giggle': 'クスクス笑う',
+				'mbituart.expressMenu.happy': 'ハッピー',
+				'mbituart.expressMenu.hello': 'ハロー',
+				'mbituart.expressMenu.mysterious': '神秘的',
+				'mbituart.expressMenu.sad': '寂しい',
+				'mbituart.expressMenu.slide': 'スライド',
+				'mbituart.expressMenu.soaring': '急上昇',
+				'mbituart.expressMenu.spring': '春',
+				'mbituart.expressMenu.twinkle': 'きらめく',
+				'mbituart.expressMenu.yawn': 'あくび',
 			}
 		};
 		for (const locale in extTranslations) {

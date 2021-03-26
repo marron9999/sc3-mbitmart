@@ -32,6 +32,7 @@ const CMD = {
 	MAGNETIC_FORCE: "RF",
 	ACCELERATION: "RG",
 	ROTATION: "RR",
+	MICROPHONE: "RP",
 	PLAY_TONE_16: "TX",
 	PLAY_TONE_8: "T8",
 	PLAY_TONE_4: "T4",
@@ -101,6 +102,7 @@ class MBitUART {
 			// micro:bit v2	
 			play_sound: 0,
 			microbit_level: 0,
+            microphone: 0,
 		};
 
 		/**
@@ -129,8 +131,8 @@ class MBitUART {
 
 	send (cmd, data) {
 		if( this._runtime._mbitlink.instance != null) {
-			this._runtime._mbitlink.instance.send(cmd + data); 
-		}
+			this._runtime._mbitlink.instance.send(cmd + data + "\n");
+ 		}
 	}
 
 	onMessage (data) {
@@ -171,6 +173,10 @@ class MBitUART {
 		}
 		if(data[0] == 'R') {
 			this._sensors.rotation = this.hex_array(data.substr(2));
+			return true;
+		}
+		if(data[0] == 'P') {
+			this._sensors.microphone = parseInt(data.substr(2));
 			return true;
 		}
 		if(data[0] == 'D') {
@@ -251,6 +257,9 @@ class MBitUART {
 	}
 	get microbit_level () {
 		return this._sensors.microbit_level;
+	}
+	get microphone () {
+		return this._sensors.microphone;
 	}
 
 	hex2dec (val) {
@@ -1209,7 +1218,7 @@ class Scratch3_MBitUART_Blocks {
 				{
 					opcode: 'setAcceleration',
 					text: formatMessage({
-						id: 'mbituart.sensorAcceleration',
+						id: 'mbituart.setAcceleration',
 						default: 'round [ROUND] of acceleration',
 						description: 'round value of acceleration'
 					}),
@@ -1241,7 +1250,7 @@ class Scratch3_MBitUART_Blocks {
 				{
 					opcode: 'setMagneticForce',
 					text: formatMessage({
-						id: 'mbituart.sensorMagneticForce',
+						id: 'mbituart.setMagneticForce',
 						default: 'round [ROUND] of magnetic force',
 						description: 'round value of magnetic force'
 					}),
@@ -1321,7 +1330,7 @@ class Scratch3_MBitUART_Blocks {
 				{
 					opcode: 'setRotation',
 					text: formatMessage({
-						id: 'mbituart.sensorRotation',
+						id: 'mbituart.setRotation',
 						default: 'round [ROUND] of rotation',
 						description: 'round value of rotation'
 					}),
@@ -1330,6 +1339,31 @@ class Scratch3_MBitUART_Blocks {
 						ROUND: {
 							type: ArgumentType.NUMBER,
 							defaultValue: 10
+						}
+					}
+				},
+				'---',
+				{
+					opcode: 'getMicrophone',
+					text: formatMessage({
+						id: 'mbituart.getMicrophone',
+						default: 'microphone level',
+						description: 'microphone level'
+					}),
+					blockType: BlockType.REPORTER
+				},
+				{
+					opcode: 'setMicrophone',
+					text: formatMessage({
+						id: 'mbituart.setMicrophone',
+						default: 'round [ROUND] of microphone',
+						description: 'round value of microphone'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						ROUND: {
+							type: ArgumentType.NUMBER,
+							defaultValue: 5
 						}
 					}
 				},
@@ -1606,6 +1640,9 @@ class Scratch3_MBitUART_Blocks {
 	getRotation (args) {
 		return this.instance.rotation[args.ROTATION];
 	}
+	getMicrophone (args) {
+		return this.instance.microphone;
+	}
 
 	setSensor (args) {
 		this.command(CMD.SENSOR, (args.ENABLE == 0)? "0" : "31");
@@ -1618,6 +1655,9 @@ class Scratch3_MBitUART_Blocks {
 	}
 	setRotation (args) {
 		this.command(CMD.ROTATION, args.ROUND);
+	}
+	setMicrophone (args) {
+		this.command(CMD.MICROPHONE, args.ROUND);
 	}
 	playTone(args) {
 		const tone = [
@@ -1686,10 +1726,12 @@ class Scratch3_MBitUART_Blocks {
 				'mbituart.getAcceleration': '加速度センサー[AXIS]',
 				'mbituart.getMagneticForce': '磁力センサー[AXIS]',
 				'mbituart.getRotation': '回転センサー[ROTATION]',
+				'mbituart.getMicrophone': 'マイク音量',
 				'mbituart.setSensor': '基本センサー(ロゴ,ボタン,明るさ,温度など)を[ENABLE]',
-				'mbituart.sensorMagneticForce': '磁力センサーを[ROUND]でまるめる',
-				'mbituart.sensorAcceleration': '加速度センサーを[ROUND]でまるめる',
-				'mbituart.sensorRotation': '回転センサーを[ROUND]でまるめる',
+				'mbituart.setMagneticForce': '磁力センサーを[ROUND]でまるめる',
+				'mbituart.setAcceleration': '加速度センサーを[ROUND]でまるめる',
+				'mbituart.setRotation': '回転センサーを[ROUND]でまるめる',
+				'mbituart.setMicrophone': 'マイク音量を[ROUND]でまるめる',
 				'mbituart.axisMenu.x': 'X軸',
 				'mbituart.axisMenu.y': 'Y軸',
 				'mbituart.axisMenu.z': 'Z軸',

@@ -38,6 +38,12 @@ const CMD = {
 	PLAY_TONE_4: "T4",
 	PLAY_TONE_2: "T2",
 	PLAY_TONE_1: "T1",
+	MODE_PIN_0: "R0",
+	MODE_PIN_1: "R1",
+	MODE_PIN_2: "R2",
+	WRITE_PIN_0: "P0",
+	WRITE_PIN_1: "P1",
+	WRITE_PIN_2: "P2",
 	PLAY_EXPRESS: "TT",
 };
 
@@ -101,7 +107,6 @@ class MBitUART {
 
 			// micro:bit v2	
 			play_sound: 0,
-			microbit_level: 0,
             microphone: 0,
 		};
 
@@ -188,11 +193,6 @@ class MBitUART {
 				}
 				return true;
 			}
-			if(data[1] == 'V') {
-				this._sensors.microbit_level = parseInt(data.substr(2));
-				return true;
-			}
-			return true;
 		}
 		return false;
 	}
@@ -254,9 +254,6 @@ class MBitUART {
 
 	get play_sound () {
 		return this._sensors.play_sound;
-	}
-	get microbit_level () {
-		return this._sensors.microbit_level;
 	}
 	get microphone () {
 		return this._sensors.microphone;
@@ -348,6 +345,12 @@ const MBitUART_Rotation = {
 const MBitUART_Enable = {
 	ENABLE: 1,
 	DISABLE: 0
+};
+
+const MBitUART_PINMODE = {
+	NONE: 0,
+	ONOFF: 1,
+	VALUE: 2
 };
 
 const MBitUART_SoundLevel = {
@@ -451,6 +454,34 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: '2',
 				value: 2
+			},
+		];
+	}
+	get TOUCH_PINMODE_MENU () {
+		return [
+			{
+				text: formatMessage({
+					id: 'mbituart.pinModeMenu.none',
+					default: 'none',
+					description: 'label for pin mode picker'
+				}),
+				value: MBitUART_PINMODE.NONE
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.pinModeMenu.onoff',
+					default: 'onoff',
+					description: 'label for pin mode picker'
+				}),
+				value: MBitUART_PINMODE.ONOFF
+			},
+			{
+				text: formatMessage({
+					id: 'mbituart.pinModeMenu.value',
+					default: 'value',
+					description: 'label for pin mode picker'
+				}),
+				value: MBitUART_PINMODE.VALUE
 			},
 		];
 	}
@@ -1057,6 +1088,49 @@ class Scratch3_MBitUART_Blocks {
 					}
 				},
 				{
+					opcode: 'outPinValue',
+					text: formatMessage({
+						id: 'mbituart.outPinValue',
+						default: 'output [VALUE] to pin [PIN] ',
+						description: 'output value to the pin'
+
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						PIN: {
+							type: ArgumentType.NUMBER,
+							menu: 'touchPins',
+							defaultValue: 0
+						},
+						VALUE: {
+							type: ArgumentType.NUMBER,
+							defaultValue: 0
+						}
+					}
+				},
+				{
+					opcode: 'setPinConfig',
+					text: formatMessage({
+						id: 'mbituart.setPinConfig',
+						default: 'pin [PIN] [MODE]',
+						description: 'set the pin mode'
+
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						PIN: {
+							type: ArgumentType.NUMBER,
+							menu: 'touchPins',
+							defaultValue: 0
+						},
+						MODE: {
+							type: ArgumentType.STRING,
+							menu: 'pinMode',
+							defaultValue: MBitUART_PINMODE.NONE
+						}
+					}
+				},
+				{
 					opcode: 'whenGesture',
 					text: formatMessage({
 						id: 'mbituart.whenGesture',
@@ -1393,6 +1467,10 @@ class Scratch3_MBitUART_Blocks {
 					acceptReporters: true,
 					items: this.TOUCH_PINS_MENU
 				},
+				pinMode: {
+					acceptReporters: true,
+					items: this.TOUCH_PINMODE_MENU
+				},
 				rotation: {
 					acceptReporters: true,
 					items: this.ROTATION_MENU
@@ -1624,6 +1702,36 @@ class Scratch3_MBitUART_Blocks {
 	getPinConnected (args) {
 		return this.instance.touch_pins[args.PIN];
 	}
+	outPinValue (args) {
+		if(argsPIN == "0") {
+			this.command(CMD.WRITE_PIN_0, args.VALUE);
+			return;
+		}
+		if(argsPIN == "1") {
+			this.command(CMD.WRITE_PIN_1, args.VALUE);
+			return;
+		}
+		if(argsPIN == "2") {
+			this.command(CMD.WRITE_PIN_2, args.VALUE);
+			return;
+		}
+	}
+	setPinConfig (args) {
+		let flag = (args.MODE == "onoff")? "1" :
+			(args.MODE == "value")? "2" : "0";
+		if(argsPIN == "0") {
+			this.command(CMD.MODE_PIN_0, flag);
+			return;
+		}
+		if(argsPIN == "1") {
+			this.command(CMD.MODE_PIN_1, flag);
+			return;
+		}
+		if(argsPIN == "2") {
+			this.command(CMD.MODE_PIN_2, flag);
+			return;
+		}
+	}
 
 	getLightLevel () {
 		return this.instance.light_level;
@@ -1645,7 +1753,7 @@ class Scratch3_MBitUART_Blocks {
 	}
 
 	setSensor (args) {
-		this.command(CMD.SENSOR, (args.ENABLE == 0)? "0" : "31");
+		this.command(CMD.SENSOR, (args.ENABLE == 0)? "0" : ("" + (1 + 2 + 4 + 16)));
 	}
 	setMagneticForce (args) {
 		this.command(CMD.MAGNETIC_FORCE, args.ROUND);
@@ -1718,6 +1826,8 @@ class Scratch3_MBitUART_Blocks {
 			    "mbituart.getGesture": "ジェスチャー",
 			    "mbituart.whenPinConnected": "ピン[PIN]がつながったとき",
 			    "mbituart.getPinConnected": "ピン[PIN]",
+			    "mbituart.outPinValue": "ピン[PIN]を[VALUE]にする",
+			    "mbituart.setPinConfig": "ピン[PIN]を[MODE]",
 			    "mbituart.whenTilted": "[DIRECTION]に傾いたとき",
 				'mbituart.whenLogoTouched': 'ロゴがタッチされたとき',
 				'mbituart.isLogoTouched':"ロゴがタッチされた",
@@ -1784,6 +1894,9 @@ class Scratch3_MBitUART_Blocks {
 				'mbituart.expressMenu.spring': '春',
 				'mbituart.expressMenu.twinkle': 'きらめく',
 				'mbituart.expressMenu.yawn': 'あくび',
+				'mbituart.pinModeMenu.none': '使わない',
+				'mbituart.pinModeMenu.onoff': 'デジタルで使う',
+				'mbituart.pinModeMenu.value': 'アナログで使う',
 			}
 		};
 		for (const locale in extTranslations) {

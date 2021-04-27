@@ -434,7 +434,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.buttonsMenu.any',
-					default: 'any',
+					default: 'Any',
 					description: 'label for "any" element in button picker'
 				}),
 				value: MBitUART_Buttons.ANY
@@ -462,7 +462,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.pinModeMenu.none',
-					default: 'none',
+					default: 'None',
 					description: 'label for pin mode picker'
 				}),
 				value: MBitUART_PINMODE.NONE
@@ -470,7 +470,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.pinModeMenu.onoff',
-					default: 'onoff',
+					default: 'On/Off',
 					description: 'label for pin mode picker'
 				}),
 				value: MBitUART_PINMODE.ONOFF
@@ -478,7 +478,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.pinModeMenu.value',
-					default: 'value',
+					default: 'Value',
 					description: 'label for pin mode picker'
 				}),
 				value: MBitUART_PINMODE.VALUE
@@ -616,7 +616,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.rotationMenu.roll',
-					default: 'roll',
+					default: 'Roll',
 					description: 'label for rotate picker'
 				}),
 				value: MBitUART_Rotation.ROLL
@@ -624,7 +624,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.rotationMenu.pitch',
-					default: 'pitch',
+					default: 'Pitch',
 					description: 'label for rotate picker'
 				}),
 				value: MBitUART_Rotation.PITCH
@@ -637,7 +637,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.enableMenu.enable',
-					default: 'enable',
+					default: 'Enable',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Enable.ENABLE
@@ -645,7 +645,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.enableManu.disable',
-					default: 'disable',
+					default: 'Disable',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Enable.DISABLE
@@ -822,7 +822,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.giggle',
-					default: 'giggle',
+					default: 'Giggle',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.giggle
@@ -830,7 +830,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.happy',
-					default: 'happy',
+					default: 'Happy',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.happy
@@ -838,7 +838,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.hello',
-					default: 'hello',
+					default: 'Hello',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.hello
@@ -846,7 +846,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.mysterious',
-					default: 'mysterious',
+					default: 'Mysterious',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.mysterious
@@ -854,7 +854,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.sad',
-					default: 'sad',
+					default: 'Sad',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.sad
@@ -862,7 +862,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.slide',
-					default: 'slide',
+					default: 'Slide',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.slide
@@ -870,7 +870,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.soaring',
-					default: 'soaring',
+					default: 'Soaring',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.soaring
@@ -878,7 +878,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.spring',
-					default: 'spring',
+					default: 'Spring',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.spring
@@ -886,7 +886,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.twinkle',
-					default: 'twinkle',
+					default: 'Twinkle',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.twinkle
@@ -894,7 +894,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.expressMenu.yawn',
-					default: 'yawn',
+					default: 'Yawn',
 					description: 'label for enable picker'
 				}),
 				value: MBitUART_Express.yawn
@@ -910,7 +910,7 @@ class Scratch3_MBitUART_Blocks {
             {
                 text: formatMessage({
                     id: 'mbituart.tiltDirectionMenu.front',
-                    default: 'front',
+                    default: 'Front',
                     description: 'label for front element in tilt direction picker for micro:bit extension'
                 }),
                 value: MBitUART_TiltDirection.FRONT
@@ -918,7 +918,7 @@ class Scratch3_MBitUART_Blocks {
             {
                 text: formatMessage({
                     id: 'mbituart.tiltDirectionMenu.back',
-                    default: 'back',
+                    default: 'Back',
                     description: 'label for back element in tilt direction picker for micro:bit extension'
                 }),
                 value: MBitUART_TiltDirection.BACK
@@ -926,7 +926,7 @@ class Scratch3_MBitUART_Blocks {
             {
                 text: formatMessage({
                     id: 'mbituart.tiltDirectionMenu.left',
-                    default: 'left',
+                    default: 'Left',
                     description: 'label for left element in tilt direction picker for micro:bit extension'
                 }),
                 value: MBitUART_TiltDirection.LEFT
@@ -934,7 +934,7 @@ class Scratch3_MBitUART_Blocks {
             {
                 text: formatMessage({
                     id: 'mbituart.tiltDirectionMenu.right',
-                    default: 'right',
+                    default: 'Right',
                     description: 'label for right element in tilt direction picker for micro:bit extension'
                 }),
                 value: MBitUART_TiltDirection.RIGHT
@@ -951,7 +951,7 @@ class Scratch3_MBitUART_Blocks {
 			{
 				text: formatMessage({
 					id: 'mbituart.tiltDirectionMenu.any',
-					default: 'any',
+					default: 'Any',
 					description: 'label for any direction element in tilt direction picker'
 				}),
 				value: MBitUART_TiltDirection.ANY
@@ -989,7 +989,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'whenLogoTouched',
 					text: formatMessage({
 						id: 'mbituart.whenLogoTouched',
-						default: 'when logo touched',
+						default: 'When logo touched',
 						description: 'when the logo on the micro:bit is touched'
 					}),
 					blockType: BlockType.HAT
@@ -998,7 +998,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'isLogoTouched',
 					text: formatMessage({
 						id: 'mbituart.isLogoTouched',
-						default: 'logo touched?',
+						default: 'Logo touched?',
 						description: 'is the logo on the micro:bit touched?'
 					}),
 					blockType: BlockType.BOOLEAN
@@ -1007,7 +1007,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'whenButtonPressed',
 					text: formatMessage({
 						id: 'mbituart.whenButtonPressed',
-						default: 'when [BTN] button pressed',
+						default: 'When [BTN] button pressed',
 						description: 'when the selected button on the micro:bit is pressed'
 					}),
 					blockType: BlockType.HAT,
@@ -1039,7 +1039,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getLightLevel',
 					text: formatMessage({
 						id: 'mbituart.getLightLevel',
-						default: 'light level',
+						default: 'Light level',
 						description: 'light level'
 					}),
 					blockType: BlockType.REPORTER
@@ -1048,7 +1048,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getTemperature',
 					text: formatMessage({
 						id: 'mbituart.getTemperature',
-						default: 'temperature',
+						default: 'Temperature',
 						description: 'temperature'
 					}),
 					blockType: BlockType.REPORTER
@@ -1057,7 +1057,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'whenPinConnected',
 					text: formatMessage({
 						id: 'mbituart.whenPinConnected',
-						default: 'when pin [PIN] connected',
+						default: 'When pin [PIN] connected',
 						description: 'when the pin detects a connection to Earth/Ground'
 
 					}),
@@ -1074,7 +1074,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getPinConnected',
 					text: formatMessage({
 						id: 'mbituart.getPinConnected',
-						default: 'when pin [PIN] connected',
+						default: 'When pin [PIN] connected',
 						description: 'when the pin detects a connection to Earth/Ground'
 
 					}),
@@ -1091,7 +1091,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'outPinValue',
 					text: formatMessage({
 						id: 'mbituart.outPinValue',
-						default: 'output [VALUE] to pin [PIN] ',
+						default: 'Output [VALUE] to pin [PIN] ',
 						description: 'output value to the pin'
 
 					}),
@@ -1112,7 +1112,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'setPinConfig',
 					text: formatMessage({
 						id: 'mbituart.setPinConfig',
-						default: 'pin [PIN] [MODE]',
+						default: 'Pin [PIN] with [MODE]',
 						description: 'set the pin mode'
 
 					}),
@@ -1134,7 +1134,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'whenGesture',
 					text: formatMessage({
 						id: 'mbituart.whenGesture',
-						default: 'when [GESTURE]',
+						default: 'When [GESTURE]',
 						description: 'when the selected gesture is detected by the micro:bit'
 					}),
 					blockType: BlockType.HAT,
@@ -1150,7 +1150,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getGesture',
 					text: formatMessage({
 						id: 'mbituart.getGesture',
-						default: 'get Gesture',
+						default: 'Get gesture',
 						description: 'get gesture'
 					}),
 					blockType: BlockType.REPORTER
@@ -1159,7 +1159,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'setSensor',
 					text: formatMessage({
 						id: 'mbituart.setSensor',
-						default: '[ENABLE] basic sensor(logo, buttons, light level, temperature and pins)',
+						default: '[ENABLE] basic sensor(Logo, Buttons, Light level, Temperature)',
 						description: 'enable/disable basic sensor(logo, buttons, light level, temperature, etc)'
 					}),
 					blockType: BlockType.COMMAND,
@@ -1176,7 +1176,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'displaySymbol',
 					text: formatMessage({
 						id: 'mbituart.displaySymbol',
-						default: 'display [MATRIX]',
+						default: 'Display [MATRIX]',
 						description: 'display a pattern on the micro:bit display'
 					}),
 					blockType: BlockType.COMMAND,
@@ -1191,7 +1191,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'displayText',
 					text: formatMessage({
 						id: 'mbituart.displayText',
-						default: 'display text [TEXT]',
+						default: 'Display text [TEXT]',
 						description: 'display text on the micro:bit display'
 					}),
 					blockType: BlockType.COMMAND,
@@ -1215,7 +1215,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'displayClear',
 					text: formatMessage({
 						id: 'mbituart.clearDisplay',
-						default: 'clear display',
+						default: 'Clear display',
 						description: 'display nothing on the micro:bit display'
 					}),
 					blockType: BlockType.COMMAND
@@ -1267,7 +1267,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getPlaySound',
 					text: formatMessage({
 						id: 'mbituart.getPlaySound',
-						default: 'is play sound?',
+						default: 'Is play sound?',
 						description: 'is play sound?'
 					}),
 					blockType: BlockType.REPORTER,
@@ -1277,7 +1277,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getAcceleration',
 					text: formatMessage({
 						id: 'mbituart.getAcceleration',
-						default: 'acceleration [AXIS]',
+						default: 'Acceleration [AXIS]',
 						description: 'acceleration'
 					}),
 					blockType: BlockType.REPORTER,
@@ -1293,7 +1293,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'setAcceleration',
 					text: formatMessage({
 						id: 'mbituart.setAcceleration',
-						default: 'round [ROUND] of acceleration',
+						default: 'Round acceleration with [ROUND]',
 						description: 'round value of acceleration'
 					}),
 					blockType: BlockType.COMMAND,
@@ -1309,7 +1309,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getMagneticForce',
 					text: formatMessage({
 						id: 'mbituart.getMagneticForce',
-						default: 'magnetic force [AXIS]',
+						default: 'Magnetic force [AXIS]',
 						description: 'magnetic force'
 					}),
 					blockType: BlockType.REPORTER,
@@ -1325,7 +1325,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'setMagneticForce',
 					text: formatMessage({
 						id: 'mbituart.setMagneticForce',
-						default: 'round [ROUND] of magnetic force',
+						default: 'Round magnetic force with [ROUND]',
 						description: 'round value of magnetic force'
 					}),
 					blockType: BlockType.COMMAND,
@@ -1341,7 +1341,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'whenTilted',
 					text: formatMessage({
 						id: 'mbituart.whenTilted',
-						default: 'when tilted [DIRECTION]',
+						default: 'When tilted [DIRECTION]',
 						description: 'when the micro:bit is tilted in a direction'
 					}),
 					blockType: BlockType.HAT,
@@ -1357,7 +1357,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'isTilted',
 					text: formatMessage({
 						id: 'mbituart.isTilted',
-						default: 'tilted [DIRECTION]?',
+						default: 'Tilted [DIRECTION]?',
 						description: 'is the micro:bit is tilted in a direction?'
 					}),
 					blockType: BlockType.BOOLEAN,
@@ -1389,7 +1389,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getRotation',
 					text: formatMessage({
 						id: 'mbituart.getRotation',
-						default: 'rotation [ROTATION]',
+						default: 'Rotation [ROTATION]',
 						description: 'rotation'
 					}),
 					blockType: BlockType.REPORTER,
@@ -1405,7 +1405,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'setRotation',
 					text: formatMessage({
 						id: 'mbituart.setRotation',
-						default: 'round [ROUND] of rotation',
+						default: 'Round rotation with [ROUND]',
 						description: 'round value of rotation'
 					}),
 					blockType: BlockType.COMMAND,
@@ -1421,7 +1421,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'getMicrophone',
 					text: formatMessage({
 						id: 'mbituart.getMicrophone',
-						default: 'microphone level',
+						default: 'Microphone level',
 						description: 'microphone level'
 					}),
 					blockType: BlockType.REPORTER
@@ -1430,7 +1430,7 @@ class Scratch3_MBitUART_Blocks {
 					opcode: 'setMicrophone',
 					text: formatMessage({
 						id: 'mbituart.setMicrophone',
-						default: 'round [ROUND] of microphone',
+						default: 'Round microphone with [ROUND]',
 						description: 'round value of microphone'
 					}),
 					blockType: BlockType.COMMAND,

@@ -982,6 +982,9 @@ class Scratch3_MBitUART_Blocks {
 		return {
 			id: Scratch3_MBitUART_Blocks.EXTENSION_ID,
 			name: Scratch3_MBitUART_Blocks.EXTENSION_NAME,
+			color1:   '#0FBDAC',
+			color2:   '#0DA59A',
+			color3:   '#0B8E89',
 			blockIconURI: blockIconURI,
 			//showStatusButton: true,
 			blocks: [
